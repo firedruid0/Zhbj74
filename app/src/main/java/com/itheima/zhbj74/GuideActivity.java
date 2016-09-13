@@ -1,5 +1,6 @@
 package com.itheima.zhbj74;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import com.itheima.zhbj74.utils.PrefUtils;
 
 import java.util.ArrayList;
 
@@ -20,6 +25,8 @@ public class GuideActivity extends AppCompatActivity {
     private LinearLayout llContainer;
 
     private ImageView ivRedPoint;   //小红点
+
+    private Button btnStart;
 
     private int mPointDis;
 
@@ -38,6 +45,7 @@ public class GuideActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.vp_guide);
         llContainer = (LinearLayout) findViewById(R.id.ll_container);
         ivRedPoint = (ImageView) findViewById(R.id.iv_red_point);
+        btnStart = (Button) findViewById(R.id.btn_start);
 
         initData();
         mViewPager.setAdapter(new GuideAdapter());  //设置数据
@@ -47,11 +55,25 @@ public class GuideActivity extends AppCompatActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 //页面滑动过程中的回调
 
+                //更新小红点距离
+                int leftMargin = (int) (mPointDis * positionOffset)+position*mPointDis;
+
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivRedPoint.getLayoutParams();
+                params.leftMargin = leftMargin;
+
+                ivRedPoint.setLayoutParams(params);
+
             }
 
             @Override
             public void onPageSelected(int position) {
                 //某个页面被选中
+
+                if (position == mImageViewList.size()-1){
+                    btnStart.setVisibility(View.VISIBLE);
+                }else {
+                    btnStart.setVisibility(View.INVISIBLE);
+                }
 
             }
 
@@ -76,6 +98,21 @@ public class GuideActivity extends AppCompatActivity {
 
                 //移除监听，只执行一次
                 ivRedPoint.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+            }
+        });
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //更新sp
+                PrefUtils.setBoolean(getApplicationContext(), "is_first_enter", false);
+
+                //跳转主页面
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                finish();
+
             }
         });
 

@@ -17,7 +17,12 @@
         android:id="@+id/btn_start"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp" />
+        android:layout_marginBottom="60dp"
+        android:visibility="invisible"
+        android:textColor="@drawable/txt_guide_selector"
+        android:background="@drawable/btn_guide_selector"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
