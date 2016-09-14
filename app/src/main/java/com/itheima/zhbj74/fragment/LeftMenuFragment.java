@@ -15,7 +15,7 @@ public class LeftMenuFragment extends BaseFragment {
     }
 
     @Override
-    public View initData() {
-        return null;
+    public void initData() {
+
     }
 }

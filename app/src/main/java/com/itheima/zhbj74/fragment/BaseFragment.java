@@ -50,6 +50,6 @@ public abstract class BaseFragment extends Fragment {
     public abstract View initView();
 
     //初始化数据，必须由子类实现
-    public abstract View initData();
+    public abstract void initData();
 
 }
