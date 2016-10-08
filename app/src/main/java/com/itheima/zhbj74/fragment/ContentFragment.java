@@ -11,7 +11,7 @@ import com.itheima.zhbj74.R;
 import com.itheima.zhbj74.base.BasePager;
 import com.itheima.zhbj74.base.impl.GovAffairsPager;
 import com.itheima.zhbj74.base.impl.HomePager;
-import com.itheima.zhbj74.base.impl.NewsPager;
+import com.itheima.zhbj74.base.impl.NewsCenterPager;
 import com.itheima.zhbj74.base.impl.SettingPager;
 import com.itheima.zhbj74.base.impl.SmartServicePager;
 import com.itheima.zhbj74.view.NoScrollViewPager;
@@ -44,7 +44,7 @@ public class ContentFragment extends BaseFragment {
 
         //添加五个标签页
         mPagers.add(new HomePager(mActivity));
-        mPagers.add(new NewsPager(mActivity));
+        mPagers.add(new NewsCenterPager(mActivity));
         mPagers.add(new SmartServicePager(mActivity));
         mPagers.add(new GovAffairsPager(mActivity));
         mPagers.add(new SettingPager(mActivity));
