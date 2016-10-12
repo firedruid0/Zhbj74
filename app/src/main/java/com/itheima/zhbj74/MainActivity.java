@@ -48,4 +48,11 @@ public class MainActivity extends SlidingFragmentActivity {
         return fragment;
     }
 
+    //获取内容fragment对象
+    public ContentFragment getContentFragment(){
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        ContentFragment fragment = (ContentFragment) fm.findFragmentByTag(TAG_CONTENT);//根据标记找到对应的fragment;
+        return fragment;
+    }
+
 }
